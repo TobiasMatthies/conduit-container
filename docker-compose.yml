@@ -1,0 +1,10 @@
+services:
+  db:
+    image: postgres:latest
+    container_name: conduit_database
+    environment:
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - conduit_data:/var/lib/postgresql
