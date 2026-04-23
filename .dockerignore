@@ -1,0 +1,13 @@
+# Git
+.git
+.gitignore
+
+# Docker
+docker-compose.yml
+Dockerfile*
+.dockerignore
+
+# IDEs
+.vscode
+.idea
+.DS_Store
