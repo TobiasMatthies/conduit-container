@@ -2,11 +2,11 @@ FROM node:20
 
 WORKDIR /app
 
-COPY conduit-frontend/package.json conduit-frontend/package-lock.json* ./
+COPY package.json package-lock.json* ./
 
 RUN --mount=type=cache,target=/root/.npm npm install
 
-COPY conduit-frontend/ .
+COPY . .
 
 EXPOSE 4200
 

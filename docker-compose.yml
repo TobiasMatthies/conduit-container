@@ -8,3 +8,19 @@ services:
       POSTGRES_PASSWORD: ${DB_PASSWORD}
     volumes:
       - conduit_data:/var/lib/postgresql
+
+  frontend:
+    build:
+      context: ./conduit-frontend
+      dockerfile: ../docker/frontend/frontend.Dockerfile
+
+    ports:
+      - '4200:4200'
+
+  # backend:
+  #   build:
+  #     context: ./conduit-backend
+  #     dockerfile: ../docker/backend/backend.Dockerfile
+
+volumes:
+  conduit_data:
