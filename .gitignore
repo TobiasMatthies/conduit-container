@@ -5,3 +5,34 @@
 *.swo
 .DS_Store
 .env
+
+# Frontend (conduit-frontend)
+conduit-frontend/node_modules/
+conduit-frontend/dist/
+conduit-frontend/.angular/
+conduit-frontend/coverage/
+conduit-frontend/npm-debug.log*
+conduit-frontend/yarn-debug.log*
+conduit-frontend/yarn-error.log*
+conduit-frontend/tmp/
+conduit-frontend/out-tsc/
+
+# Backend (conduit-backend)
+conduit-backend/__pycache__/
+conduit-backend/*.py[cod]
+conduit-backend/*$py.class
+conduit-backend/venv/
+conduit-backend/env/
+conduit-backend/ENV/
+conduit-backend/.env
+conduit-backend/db.sqlite3
+conduit-backend/*.log
+conduit-backend/local_settings.py
+conduit-backend/.cache/
+conduit-backend/htmlcov/
+conduit-backend/.coverage
+conduit-backend/.coverage.*
+conduit-backend/.hypothesis/
+conduit-backend/*.egg-info/
+conduit-backend/.installed.cfg
+conduit-backend/*.egg
