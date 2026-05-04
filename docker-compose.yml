@@ -11,16 +11,18 @@ services:
 
   frontend:
     build:
-      context: ./conduit-frontend
-      dockerfile: ../docker/frontend/frontend.Dockerfile
+      context: .
+      dockerfile: ./docker/frontend/frontend.Dockerfile
 
     ports:
       - '4200:4200'
 
   backend:
     build:
-      context: ./conduit-backend
-      dockerfile: ../docker/backend/backend.Dockerfile
+      context: .
+      dockerfile: ./docker/backend/backend.Dockerfile
+
+    env_file: .env
 
     ports:
       - '8000:8000'
