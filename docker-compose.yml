@@ -17,10 +17,16 @@ services:
     ports:
       - '4200:4200'
 
-  # backend:
-  #   build:
-  #     context: ./conduit-backend
-  #     dockerfile: ../docker/backend/backend.Dockerfile
+  backend:
+    build:
+      context: ./conduit-backend
+      dockerfile: ../docker/backend/backend.Dockerfile
+
+    ports:
+      - '8000:8000'
+
+    depends_on:
+      - db
 
 volumes:
   conduit_data:
