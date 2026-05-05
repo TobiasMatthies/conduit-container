@@ -15,7 +15,7 @@ services:
       dockerfile: ./docker/frontend/frontend.Dockerfile
 
     ports:
-      - '4200:4200'
+      - '${FE_PORT}:4200'
 
   backend:
     build:
@@ -25,7 +25,7 @@ services:
     env_file: .env
 
     ports:
-      - '8000:8000'
+      - '${BE_PORT}:8000'
 
     depends_on:
       - db
