@@ -16,6 +16,7 @@ COPY docker/backend/backend.entrypoint.sh .
 RUN chmod +x backend.entrypoint.sh
 
 RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install gunicorn
 
 EXPOSE 8000
 CMD ["./backend.entrypoint.sh"]
