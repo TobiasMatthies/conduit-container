@@ -1,4 +1,5 @@
-FROM node:20
+# Use a lightweight DHI Node.js image for building
+FROM dhi.io/node:24-alpine3.22-dev AS builder
 
 WORKDIR /app
 
@@ -6,9 +7,6 @@ COPY conduit-frontend/ .
 
 # Install project dependencies using npm ci (ensures a clean, reproducible install)
 RUN --mount=type=cache,target=/root/.npm npm ci
-
-# Copy the rest of the application source code into the container
-COPY . .
 
 # Build the Angular application
 RUN npm run build
