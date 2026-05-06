@@ -34,4 +34,4 @@ else:
     print(f"Superuser '{username}' already exists.")
 EOF
 
-python manage.py runserver 0.0.0.0:8000
+gunicorn conduit.wsgi:application  --bind 0.0.0.0:8000
