@@ -15,7 +15,7 @@ services:
       dockerfile: ./docker/frontend/frontend.Dockerfile
 
     ports:
-      - '${FE_PORT}:4200'
+      - '${FE_PORT}:8080'
 
   backend:
     build:
