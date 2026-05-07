@@ -17,6 +17,9 @@ services:
     ports:
       - '${FE_PORT}:8080'
 
+    volumes:
+      - conduit_staticfiles:/usr/share/nginx/html/static
+
   backend:
     build:
       context: .
@@ -27,8 +30,12 @@ services:
     ports:
       - '${BE_PORT}:8000'
 
+    volumes:
+      - conduit_staticfiles:/static
+
     depends_on:
       - db
 
 volumes:
   conduit_data:
+  conduit_staticfiles:
