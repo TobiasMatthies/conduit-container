@@ -20,6 +20,9 @@ services:
     volumes:
       - conduit_staticfiles:/usr/share/nginx/html/static
 
+    depends_on:
+      - backend
+
   backend:
     build:
       context: .
@@ -27,8 +30,8 @@ services:
 
     env_file: .env
 
-    ports:
-      - '${BE_PORT}:8000'
+    expose:
+      - '8000'
 
     volumes:
       - conduit_staticfiles:/static
