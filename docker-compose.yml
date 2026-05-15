@@ -1,6 +1,6 @@
 services:
   db:
-    image: postgres:latest
+    image: postgres:18.4
     container_name: conduit_database
     environment:
       POSTGRES_DB: ${DB_NAME}
