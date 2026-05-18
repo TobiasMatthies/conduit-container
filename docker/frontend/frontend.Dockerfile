@@ -19,9 +19,12 @@ COPY nginx.conf /etc/nginx/nginx.conf
 
 COPY --chown=nginx:nginx --from=builder /app/dist/angular-conduit/ /usr/share/nginx/html/
 
+COPY --chown=nginx:nginx docker/frontend/frontend.entrypoint.sh /usr/local/bin/frontend.entrypoint.sh
+RUN chmod +x /usr/local/bin/frontend.entrypoint.sh
+
 USER nginx
 
 EXPOSE 8080
 
-ENTRYPOINT ["nginx", "-c", "/etc/nginx/nginx.conf"]
+ENTRYPOINT ["/usr/local/bin/frontend.entrypoint.sh", "nginx", "-c", "/etc/nginx/nginx.conf"]
 CMD ["-g", "daemon off;"]
