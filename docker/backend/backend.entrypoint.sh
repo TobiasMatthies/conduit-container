@@ -12,6 +12,7 @@ done
 echo "PostgreSQL ready - continue..."
 
 python manage.py collectstatic --noinput
+python manage.py migrate
 
 echo "creating superuser"
 python manage.py shell <<EOF

@@ -29,7 +29,8 @@ services:
       context: .
       dockerfile: ./docker/backend/backend.Dockerfile
 
-    env_file: .env
+    env_file:
+      - .env
 
     expose:
       - '8000'
