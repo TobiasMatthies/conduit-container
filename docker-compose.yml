@@ -13,13 +13,14 @@ services:
       dockerfile: ./docker/frontend/frontend.Dockerfile
 
     ports:
-      - '${FE_PORT}:8080'
+      - '${CONDUIT_FE_PORT}:8080'
 
     environment:
       - API_URL=${API_URL}
 
     volumes:
       - conduit_staticfiles:/usr/share/nginx/html/static
+      - conduit_mediafiles:/usr/share/nginx/html/media
 
     depends_on:
       - backend
@@ -37,6 +38,7 @@ services:
 
     volumes:
       - conduit_staticfiles:/static
+      - conduit_mediafiles:/media
 
     depends_on:
       - db
@@ -44,3 +46,4 @@ services:
 volumes:
   conduit_data:
   conduit_staticfiles:
+  conduit_mediafiles:
