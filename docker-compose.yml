@@ -2,10 +2,8 @@ services:
   db:
     image: postgres:18.4
     container_name: conduit_database
-    environment:
-      POSTGRES_DB: ${DB_NAME}
-      POSTGRES_USER: ${DB_USER}
-      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    env_file:
+      - .env
     volumes:
       - conduit_data:/var/lib/postgresql
 
@@ -15,10 +13,14 @@ services:
       dockerfile: ./docker/frontend/frontend.Dockerfile
 
     ports:
-      - '${FE_PORT}:8080'
+      - '${CONDUIT_FE_PORT}:8080'
+
+    environment:
+      - API_URL=${API_URL}
 
     volumes:
       - conduit_staticfiles:/usr/share/nginx/html/static
+      - conduit_mediafiles:/usr/share/nginx/html/media
 
     depends_on:
       - backend
@@ -28,13 +30,15 @@ services:
       context: .
       dockerfile: ./docker/backend/backend.Dockerfile
 
-    env_file: .env
+    env_file:
+      - .env
 
     expose:
       - '8000'
 
     volumes:
       - conduit_staticfiles:/static
+      - conduit_mediafiles:/media
 
     depends_on:
       - db
@@ -42,3 +46,4 @@ services:
 volumes:
   conduit_data:
   conduit_staticfiles:
+  conduit_mediafiles:
