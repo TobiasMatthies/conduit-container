@@ -1,0 +1,42 @@
+services:
+  db:
+    image: postgres:18.4
+    container_name: conduit_database
+    env_file:
+      - .env
+    volumes:
+      - conduit_data:/var/lib/postgresql
+    restart: unless-stopped
+
+  frontend:
+    image: ghcr.io/tobiasmatthies/conduit-container/conduit-frontend:latest
+    container_name: conduit_frontend
+    ports:
+      - '${CONDUIT_FE_PORT}:8080'
+    environment:
+      - API_URL=${API_URL}
+    volumes:
+      - conduit_staticfiles:/usr/share/nginx/html/static
+      - conduit_mediafiles:/usr/share/nginx/html/media
+    depends_on:
+      - backend
+    restart: unless-stopped
+
+  backend:
+    image: ghcr.io/tobiasmatthies/conduit-container/conduit-backend:latest
+    container_name: conduit_backend
+    env_file:
+      - .env
+    expose:
+      - '8000'
+    volumes:
+      - conduit_staticfiles:/static
+      - conduit_mediafiles:/media
+    depends_on:
+      - db
+    restart: unless-stopped
+
+volumes:
+  conduit_data:
+  conduit_staticfiles:
+  conduit_mediafiles:
