@@ -38,6 +38,8 @@ jobs:
           ssh ${{ secrets.VM_USER }}@${{ secrets.VM_HOST }} << 'ENDSSH'
             set -e
             cd ~/projects/conduit
+            touch .env
+            echo "${{ secrets.ENV_FILE }}" >> .env
             echo "${{ secrets.VM_GHCR_TOKEN }}" | \
               docker login ghcr.io -u ${{ secrets.VM_USER }} --password-stdin
             docker compose pull
