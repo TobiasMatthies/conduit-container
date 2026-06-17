@@ -1,16 +1,16 @@
+import { NgIf } from "@angular/common";
 import { Component, DestroyRef, inject, OnInit } from "@angular/core";
+import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import {
-  Validators,
-  FormGroup,
   FormControl,
+  FormGroup,
   ReactiveFormsModule,
+  Validators,
 } from "@angular/forms";
 import { ActivatedRoute, Router, RouterLink } from "@angular/router";
-import { NgIf } from "@angular/common";
 import { ListErrorsComponent } from "../../shared/components/list-errors.component";
 import { Errors } from "../models/errors.model";
 import { UserService } from "../services/user.service";
-import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 
 interface AuthForm {
   email: FormControl<string>;
@@ -23,6 +23,7 @@ interface AuthForm {
   templateUrl: "./auth.component.html",
   imports: [RouterLink, NgIf, ListErrorsComponent, ReactiveFormsModule],
   standalone: true,
+  styleUrl: "auth.component.css",
 })
 export default class AuthComponent implements OnInit {
   authType = "";
